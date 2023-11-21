@@ -43,6 +43,17 @@ public extension Blackbird {
         internal let primaryKeys: PrimaryKeyValues?
         internal let columnNames: Blackbird.ColumnNames?
         
+        /// Have rows been added?
+        ///
+        /// - Returns: Whether the table has new rows
+        public var hasNewRows: Bool {
+            if let pks = primaryKeys {
+                return !pks.isEmpty
+            }
+            
+            return false
+        }
+        
         /// Determine if a specific primary-key value may have changed.
         /// - Parameter key: The single-column primary-key value in question.
         /// - Returns: Whether the row with this primary-key value may have changed. Note that changes may be over-reported.
